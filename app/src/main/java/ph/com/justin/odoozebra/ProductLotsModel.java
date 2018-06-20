@@ -2,14 +2,16 @@ package ph.com.justin.odoozebra;
 
 public class ProductLotsModel {
     private Integer id;
-    private Boolean name;
+    private String name;
+    private Integer operation;
 
     public ProductLotsModel() {
     }
 
-    public ProductLotsModel(Integer id, Boolean name) {
+    public ProductLotsModel(Integer id, String name, Integer operation) {
         this.id = id;
         this.name = name;
+        this.operation = operation;
     }
 
     public Integer getId() {
@@ -20,11 +22,19 @@ public class ProductLotsModel {
         this.id = id;
     }
 
-    public Boolean getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(Boolean name) {
+    public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getOperation() {
+        return operation;
+    }
+
+    public void setOperation(Integer operation) {
+        this.operation = operation;
     }
 }

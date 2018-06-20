@@ -6,18 +6,18 @@ public class ProductModel {
     private Integer picking;
     private Integer product_qty;
     private Integer qty_done;
-    private Integer qty_todo;
+    private Integer qty_ordered;
 
     public ProductModel() {
     }
 
-    public ProductModel(Integer id, String name, Integer picking, Integer product_qty, Integer qty_done, Integer qty_todo) {
+    public ProductModel(Integer id, String name, Integer picking, Integer product_qty, Integer qty_done, Integer qty_ordered) {
         this.id = id;
         this.name = name;
         this.picking = picking;
         this.product_qty = product_qty;
         this.qty_done = qty_done;
-        this.qty_todo = qty_todo;
+        this.qty_ordered = qty_ordered;
     }
 
     public Integer getId() {
@@ -60,11 +60,11 @@ public class ProductModel {
         this.qty_done = qty_done;
     }
 
-    public Integer getQty_todo() {
-        return qty_todo;
+    public Integer getQty_ordered() {
+        return qty_ordered;
     }
 
-    public void setQty_todo(Integer qty_todo) {
-        this.qty_todo = qty_todo;
+    public void setQty_ordered(Integer qty_todo) {
+        this.qty_ordered = qty_ordered;
     }
 }
