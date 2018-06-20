@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,12 +22,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    Toolbar toolbar;
     DatabaseHelper databaseHelper;
     RecyclerView recyclerView;
     List<PickingModel> pickingModelList;
+    List<ProductModel> productModelList;
+    List<ProductLotsModel> productLotsModelList;
     PickingAdapter pickingAdapter;
     String connectivity = "Not Connected";
 
@@ -52,15 +57,18 @@ public class MainActivity extends AppCompatActivity {
         databaseHelper = new DatabaseHelper(MainActivity.this);
         recyclerView = findViewById(R.id.recycler_view_pickings);
 
+        initializeLists();
 
-
-        loadPickings();
         new SyncPickings(MainActivity.this).execute("");
     }
 
-    public void loadPickings() {
-        pickingModelList = databaseHelper.getAllPickings();
+    public void initializeLists() {
+        pickingModelList = new ArrayList<PickingModel>();
+        productModelList = new ArrayList<ProductModel>();
+        productLotsModelList = new ArrayList<ProductLotsModel>();
+    }
 
+    public void loadPickings() {
         pickingAdapter = new PickingAdapter(MainActivity.this, pickingModelList);
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(MainActivity.this, 1);
@@ -115,11 +123,12 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... params) {
+            databaseHelper.wipeDatabase();
             String json = "0";
             String tempNum;
 
             try {
-                JSONArray pickings = new JSONArray(wr.makeWebServiceCall("http://192.168.88.44:8000/pickings/", WebRequest.GET));
+                JSONArray pickings = new JSONArray(wr.makeWebServiceCall("https://api.myjson.com/bins/1121xe", WebRequest.GET));
                 connectivity = "Connected";
 
                 Log.e("List of students" , pickings.toString());
@@ -132,6 +141,40 @@ public class MainActivity extends AppCompatActivity {
                     pickingModel.setName(pickingObject.getString("name"));
 
                     databaseHelper.createPicking(pickingModel);
+                    pickingModelList.add(pickingModel);
+
+                    JSONArray products = new JSONArray(pickingObject.getString("pack_operations"));
+
+                    for (int b = 0 ; b < products.length() ; b++) {
+
+                        JSONObject productObject = products.getJSONObject(b);
+
+                        ProductModel productModel = new ProductModel();
+                        productModel.setId(Integer.parseInt(productObject.getString("id")));
+                        productModel.setName(productObject.getString("name"));
+                        productModel.setPicking(Integer.parseInt(productObject.getString("picking")));
+                        productModel.setProduct_qty(Integer.parseInt(productObject.getString("product_qty")));
+                        productModel.setQty_done(Integer.parseInt(productObject.getString("qty_done")));
+                        productModel.setQty_ordered(Integer.parseInt(productObject.getString("ordered_qty")));
+
+                        databaseHelper.createProducts(productModel);
+                        productModelList.add(productModel);
+
+                        JSONArray product_lots = new JSONArray(productObject.getString("pack_operation_lots"));
+
+                        for (int c = 0 ; c < product_lots.length() ; c++) {
+
+                            JSONObject productLotsObject = product_lots.getJSONObject(c);
+
+                            ProductLotsModel productLotsModel = new ProductLotsModel();
+                            productLotsModel.setId(Integer.parseInt(productLotsObject.getString("id")));
+                            productLotsModel.setName(productLotsObject.getString("lot_name"));
+                            productLotsModel.setOperation(Integer.parseInt(productObject.getString("id")));
+
+                            databaseHelper.createProductLots(productLotsModel);
+                            productLotsModelList.add(productLotsModel);
+                        }
+                    }
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -145,6 +188,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String strFromDoInBg) {
             super.onPostExecute("");
+            loadPickings();
 
             pickingAdapter.notifyDataSetChanged();
 
@@ -181,3 +225,5 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+
+//https://api.myjson.com/bins/1121xe
