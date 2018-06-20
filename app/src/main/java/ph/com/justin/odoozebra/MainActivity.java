@@ -4,6 +4,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -28,18 +30,25 @@ public class MainActivity extends AppCompatActivity {
     PickingAdapter pickingAdapter;
     String connectivity = "Not Connected";
 
+    //TabLayout
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+    private ViewPageAdapter adapter;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //TabLayout
 
         setTitle(null);
-
         Toolbar topToolBar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(topToolBar);
         topToolBar.setLogo(R.drawable.ic_android_black_24dp);
         topToolBar.setLogoDescription(getResources().getString(R.string.logo_desc));
+
         databaseHelper = new DatabaseHelper(MainActivity.this);
         recyclerView = findViewById(R.id.recycler_view_pickings);
 
