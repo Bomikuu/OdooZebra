@@ -64,7 +64,7 @@ public class ProductModel {
         return qty_ordered;
     }
 
-    public void setQty_ordered(Integer qty_todo) {
+    public void setQty_ordered(Integer qty_ordered) {
         this.qty_ordered = qty_ordered;
     }
 }
