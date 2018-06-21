@@ -12,7 +12,7 @@ import java.util.List;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     //database version
-    private static final int DATABASE_VERSION = 5;
+    private static final int DATABASE_VERSION = 7;
 
     ///database name
     private static final String DATABASE_NAME = "Pickings";
@@ -22,6 +22,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     ///columns...
     private static final String picking_id = "picking_id";
     private static final String picking_name = "picking_name";
+    private static final String picking_origin = "picking_origin";
+    private static final String picking_min_date = "picking_min_date";
+    private static final String picking_max_date = "picking_max_date";
+    private static final String picking_date = "picking_date";
+    private static final String picking_date_done = "picking_date_done";
+    private static final String picking_location_src = "picking_location_src";
+    private static final String picking_location_dest = "picking_location_dest";
+    private static final String picking_type = "picking_type";
+    private static final String picking_partner = "picking_partner";
 
     ///table name
     private static final String tbl_products = "tbl_products";
@@ -48,7 +57,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String CREATE_PICKINGS_TABLE = "CREATE TABLE " + tbl_pickings + "("
                 + picking_id + " integer primary key  , "
-                + picking_name + " TEXT);";
+                + picking_name + " TEXT,"
+                + picking_origin + " TEXT,"
+                + picking_min_date + " TEXT,"
+                + picking_max_date + " TEXT,"
+                + picking_date + " TEXT,"
+                + picking_date_done + " TEXT,"
+                + picking_location_src + " TEXT,"
+                + picking_location_dest + " TEXT,"
+                + picking_type + " TEXT,"
+                + picking_partner + " TEXT);";
         sqLiteDatabase.execSQL(CREATE_PICKINGS_TABLE);
 
         String CREATE_PRODUCTS_TABLE = "CREATE TABLE " + tbl_products + "("
@@ -81,6 +99,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         values.put(picking_id, pickingModel.getId());
         values.put(picking_name, pickingModel.getName());
+        values.put(picking_origin, pickingModel.getOrigin());
+        values.put(picking_min_date, pickingModel.getMin_date());
+        values.put(picking_max_date, pickingModel.getMax_date());
+        values.put(picking_date, pickingModel.getDate());
+        values.put(picking_date_done, pickingModel.getDate_done());
+        values.put(picking_location_src, pickingModel.getLocation_src());
+        values.put(picking_location_dest, pickingModel.getLocation_dest());
+        values.put(picking_type, pickingModel.getPicking_type());
+        values.put(picking_partner, pickingModel.getPartner());
 
         // Inserting Row
         db.insert(tbl_pickings, null, values);
@@ -203,6 +230,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 PickingModel pickingModel = new PickingModel();
                 pickingModel.setId(cursor.getInt(0));
                 pickingModel.setName(cursor.getString(1));
+                pickingModel.setOrigin(cursor.getString(2));
+                pickingModel.setMin_date(cursor.getString(3));
+                pickingModel.setMax_date(cursor.getString(4));
+                pickingModel.setDate(cursor.getString(5));
+                pickingModel.setDate_done(cursor.getString(6));
+                pickingModel.setLocation_src(cursor.getString(7));
+                pickingModel.setLocation_dest(cursor.getString(8));
+                pickingModel.setPicking_type(cursor.getString(9));
+                pickingModel.setPartner(cursor.getString(10));
+
 
                 pickingModelList.add(pickingModel);
             } while (cursor.moveToNext());

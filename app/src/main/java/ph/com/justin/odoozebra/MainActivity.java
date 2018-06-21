@@ -15,7 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.support.v7.widget.Toolbar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -27,6 +27,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
+    Integer size;
     DatabaseHelper databaseHelper;
     RecyclerView recyclerView;
     List<PickingModel> pickingModelList;
@@ -34,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     List<ProductLotsModel> productLotsModelList;
     PickingAdapter pickingAdapter;
     String connectivity = "Not Connected";
+    TextView txtCountPickings;
+    Boolean resync = false;
 
     //TabLayout
     private TabLayout tabLayout;
@@ -46,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        txtCountPickings = findViewById(R.id.txtCountPickings);
+        size = 0;
         //TabLayout
 
         setTitle(null);
@@ -57,9 +62,21 @@ public class MainActivity extends AppCompatActivity {
         databaseHelper = new DatabaseHelper(MainActivity.this);
         recyclerView = findViewById(R.id.recycler_view_pickings);
 
+        // Create empty list
         initializeLists();
 
-        new SyncPickings(MainActivity.this).execute("");
+        // Load the recyclerview for the pickings
+        loadPickingsView();
+
+        pickingModelList.addAll(databaseHelper.getAllPickings());
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        txtCountPickings.setText(pickingModelList.size() + " Pickings available");
+        pickingAdapter.notifyDataSetChanged();
     }
 
     public void initializeLists() {
@@ -68,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         productLotsModelList = new ArrayList<ProductLotsModel>();
     }
 
-    public void loadPickings() {
+    public void loadPickingsView() {
         pickingAdapter = new PickingAdapter(MainActivity.this, pickingModelList);
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(MainActivity.this, 1);
@@ -88,6 +105,11 @@ public class MainActivity extends AppCompatActivity {
             public void onLongItemClick(int position) {
             }
         });
+    }
+
+    public void resyncPickings() {
+        resync = true;
+        new SyncPickings(MainActivity.this).execute("");
     }
 
     public void goToProducts() {
@@ -123,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... params) {
+            pickingModelList.clear();
             databaseHelper.wipeDatabase();
             String json = "0";
             String tempNum;
@@ -139,6 +162,15 @@ public class MainActivity extends AppCompatActivity {
                     PickingModel pickingModel = new PickingModel();
                     pickingModel.setId(Integer.parseInt(pickingObject.getString("id")));
                     pickingModel.setName(pickingObject.getString("name"));
+                    pickingModel.setOrigin(pickingObject.getString("origin"));
+                    pickingModel.setMin_date(pickingObject.getString("min_date"));
+                    pickingModel.setMax_date(pickingObject.getString("max_date"));
+                    pickingModel.setDate(pickingObject.getString("date"));
+                    pickingModel.setDate_done(pickingObject.getString("date_done"));
+                    pickingModel.setLocation_src(pickingObject.getString("location"));
+                    pickingModel.setLocation_dest(pickingObject.getString("location_dest"));
+                    pickingModel.setPicking_type(pickingObject.getString("picking_type"));
+                    pickingModel.setPartner(pickingObject.getString("partner"));
 
                     databaseHelper.createPicking(pickingModel);
                     pickingModelList.add(pickingModel);
@@ -188,10 +220,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String strFromDoInBg) {
             super.onPostExecute("");
-            loadPickings();
-
+            txtCountPickings.setText(pickingModelList.size()  + " Pickings available");
             pickingAdapter.notifyDataSetChanged();
-
             progressDialog.dismiss();
         }
 
@@ -217,7 +247,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         if(id == R.id.action_refresh){
-            Toast.makeText(MainActivity.this, "Refresh App", Toast.LENGTH_LONG).show();
+            resyncPickings();
         }
         if(id == R.id.action_new){
             Toast.makeText(MainActivity.this, "Create Text", Toast.LENGTH_LONG).show();
@@ -226,4 +256,5 @@ public class MainActivity extends AppCompatActivity {
     }
 }
 
-//https://api.myjson.com/bins/1121xe
+//https://api.myjson.com/bins/1121xe c=25
+//https://api.myjson.com/bins/sluje c=62

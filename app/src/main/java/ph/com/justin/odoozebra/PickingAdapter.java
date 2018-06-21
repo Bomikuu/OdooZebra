@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PickingAdapter extends RecyclerView.Adapter<PickingAdapter.MyViewHolder> {
@@ -26,12 +27,13 @@ public class PickingAdapter extends RecyclerView.Adapter<PickingAdapter.MyViewHo
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView txtShipment;
+        TextView txtShipment, txtCompany;
 
         public MyViewHolder(View view, final OnItemClickListener listener) {
             super(view);
 
             txtShipment = view.findViewById(R.id.txtShipment);
+            txtCompany = view.findViewById(R.id.txtCompany);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -80,14 +82,14 @@ public class PickingAdapter extends RecyclerView.Adapter<PickingAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(final PickingAdapter.MyViewHolder holder, int position) {
-        holder.txtShipment.setText("Name: "+ pickingModels.get(position).getName());
+        holder.txtShipment.setText("Transfer Name: "+ pickingModels.get(position).getName());
+        holder.txtCompany.setText("ID: " + pickingModels.get(position).getId());
     }
 
     @Override
     public int getItemCount() {
         return pickingModels.size();
     }
-
 }
 
 
