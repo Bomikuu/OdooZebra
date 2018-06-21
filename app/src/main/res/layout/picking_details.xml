@@ -4,9 +4,9 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/txtSomething"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:text="INFO HERE"
         android:textSize="30dp"/>
 
 </android.support.constraint.ConstraintLayout>
