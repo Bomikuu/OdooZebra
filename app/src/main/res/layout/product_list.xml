@@ -9,7 +9,7 @@
         android:text="Product here"/>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view_pickings"
+        android:id="@+id/recycler_view_products"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
