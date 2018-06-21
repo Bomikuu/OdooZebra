@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -143,6 +144,62 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close(); // Closing database connection
     }
 
+    public PickingModel getPicking(Integer id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Log.e("Char: ", ModGlobal.currentPickingID.toString());
+
+        PickingModel tempPickingModel = new PickingModel();
+
+        String query = "SELECT * FROM " + tbl_pickings + " WHERE " +
+                picking_id + "=" + id.toString();
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+            tempPickingModel.setId(cursor.getInt(0));
+            tempPickingModel.setName(cursor.getString(1));
+            tempPickingModel.setOrigin(cursor.getString(2));
+            tempPickingModel.setMin_date(cursor.getString(3));
+            tempPickingModel.setMax_date(cursor.getString(4));
+            tempPickingModel.setDate(cursor.getString(5));
+            tempPickingModel.setDate_done(cursor.getString(6));
+            tempPickingModel.setLocation_src(cursor.getString(7));
+            tempPickingModel.setLocation_dest(cursor.getString(8));
+            tempPickingModel.setPicking_type(cursor.getString(9));
+            tempPickingModel.setPartner(cursor.getString(10));
+        }
+
+        return tempPickingModel;
+    }
+
+    public List<ProductModel> getPickingProducts(Integer id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        List<ProductModel> tempProductModelList = new ArrayList<ProductModel>();
+
+        String query = "SELECT * FROM " + tbl_products + " WHERE " +
+                product_picking_id + "=" + id.toString();
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                ProductModel productModel = new ProductModel();
+                productModel.setId(cursor.getInt(0));
+                productModel.setName(cursor.getString(1));
+                productModel.setPicking(cursor.getInt(2));
+                productModel.setProduct_qty(cursor.getInt(3));
+                productModel.setQty_done(cursor.getInt(4));
+                productModel.setQty_ordered(cursor.getInt(5));
+
+
+                tempProductModelList.add(productModel);
+            } while (cursor.moveToNext());
+        }
+
+        return tempProductModelList;
+    }
     public void wipeDatabase() {
         SQLiteDatabase db = this.getWritableDatabase();
         String DELETE_PICKINGS = "DELETE FROM " + tbl_pickings;

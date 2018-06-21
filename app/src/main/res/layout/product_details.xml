@@ -42,28 +42,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Product Name"
-                android:id="@+id/productName"
+                android:id="@+id/txtProductName"
                 />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Source Location"
-                android:id="@+id/productLocationSource"
+                android:text="Quantity Ordered"
+                android:id="@+id/txtQuantityOrdered"
                 />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Location Destination"
-                android:id="@+id/productLocationDestination"
+                android:text="To Do"
+                android:id="@+id/txtQuantityToDo"
                 />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Quantity"
-                android:id="@+id/productQuantity"
+                android:text="Done"
+                android:id="@+id/txtQuantityDone"
                 />
 
 
