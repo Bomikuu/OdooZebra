@@ -136,24 +136,36 @@ public class MainActivity extends AppCompatActivity {
             progressDialog.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
             progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             progressDialog.setTitle("Please wait");
-            progressDialog.setMessage("Downloading pickings");
+            progressDialog.setMessage("Downloading pickings 0%");
             progressDialog.setCancelable(false);
+            progressDialog.setIndeterminate(false);
+            progressDialog.setProgress(0);
+            progressDialog.setMax(100);
             progressDialog.show();
-
         }
 
+        @Override
+        protected void onProgressUpdate(String... values) {
+            super.onProgressUpdate(values);
+
+            progressDialog.setProgress(Integer.parseInt(values[0]));
+
+            progressDialog.setMessage("Downloading pickings " + values[0] + "%");
+        }
 
         @Override
         protected String doInBackground(String... params) {
             pickingModelList.clear();
             databaseHelper.wipeDatabase();
             String json = "0";
-            String tempNum;
+            Integer unit;
+            Integer progress = 0;
 
             try {
                 JSONArray pickings = new JSONArray(wr.makeWebServiceCall("https://api.myjson.com/bins/1121xe", WebRequest.GET));
                 connectivity = "Connected";
 
+                unit = 100/pickings.length();
                 Log.e("List of students" , pickings.toString());
                 for (int a = 0 ; a < pickings.length() ; a++){
 
@@ -207,6 +219,12 @@ public class MainActivity extends AppCompatActivity {
                             productLotsModelList.add(productLotsModel);
                         }
                     }
+
+                    progress += unit;
+
+                    progressDialog.setProgress(progress);
+
+                    publishProgress(progress.toString());
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
