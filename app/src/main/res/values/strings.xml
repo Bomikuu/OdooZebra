@@ -8,4 +8,5 @@
     <string name="action_refresh">Settings</string>
     <string name="action_new">Settings</string>
     <string name="logo_desc">App logo</string>
+    <string name="dateExpected">Min-Max Date</string>
 </resources>

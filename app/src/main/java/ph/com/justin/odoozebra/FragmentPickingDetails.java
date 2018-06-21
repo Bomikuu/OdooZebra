@@ -6,12 +6,15 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 public class FragmentPickingDetails extends Fragment {
 
     View v;
+    TextView txt;
 
     public FragmentPickingDetails() {
+
 
     }
 
@@ -22,4 +25,14 @@ public class FragmentPickingDetails extends Fragment {
 
         return v;
     }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+
+
+    }
+
+
 }

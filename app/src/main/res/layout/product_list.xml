@@ -7,6 +7,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:text="Product here"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_pickings"
         android:layout_width="match_parent"
@@ -14,4 +15,6 @@
         android:clipToPadding="false"
         android:scrollbars="vertical"
         />
+
+
 </android.support.constraint.ConstraintLayout>

@@ -1,12 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".FragmentPickingDetails"
+    android:orientation="vertical"
+    android:weightSum="3">
 
-    <TextView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:text="INFO HERE"
-        android:textSize="30dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".8"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:padding="5dp"
+       >
 
-</android.support.constraint.ConstraintLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".5"
+            android:orientation="horizontal"
+            >
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@mipmap/ic_launcher"
+                android:id="@+id/imgCompany"/>
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.2"
+            android:layout_marginTop="10dp"
+            >
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/txtCompany"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/company_name"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:fontFamily="serif-monospace" />
+            </TableRow>
+
+
+
+            <TableRow>
+                <TextView
+                    android:id="@+id/txtShipmentName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/shipment"
+                    android:textSize="15sp"
+
+                    app:fontFamily="monospace" />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:id="@+id/txtDateExpected"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dateExpected"
+                    android:textSize="15sp"
+
+                    app:fontFamily="monospace" />
+            </TableRow>
+
+
+
+
+
+
+        </TableLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Other Details"
+            android:layout_alignParentTop="true"
+            android:id="@+id/txtOther"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Origin"
+            android:layout_below="@+id/txtOther"
+            android:id="@+id/txtOrigin"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Date Created"
+            android:layout_below="@+id/txtOrigin"
+            android:id="@+id/txtDateCreated"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Location Source"
+            android:layout_below="@+id/txtDateCreated"
+            android:id="@+id/txtLocationSource"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Location Destination"
+            android:layout_below="@+id/txtLocationSource"
+            android:id="@+id/txtLocationDestination"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pick Type"
+            android:layout_below="@+id/txtLocationDestination"
+            android:id="@+id/txtPickType"/>
+
+
+
+
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        >
+
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:text="INFO HERE"
+            android:textSize="30dp"
+            />
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

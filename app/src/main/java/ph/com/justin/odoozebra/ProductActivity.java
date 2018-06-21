@@ -38,4 +38,6 @@ public class ProductActivity extends AppCompatActivity {
         topToolBar.setLogo(R.drawable.ic_android_black_24dp);
         topToolBar.setLogoDescription(getResources().getString(R.string.logo_desc));
     }
+
+
 }
