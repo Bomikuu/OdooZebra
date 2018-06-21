@@ -24,7 +24,7 @@ public class FragmentPickingDetails extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.picking_details, container, false);
 
-        txtSomething = v.findViewById(R.id.txtSomething);
+
 
 
 

@@ -6,7 +6,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".FragmentPickingDetails"
     android:orientation="vertical"
-    android:weightSum="3">
+    android:weightSum="3"
+    android:scrollbars="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
