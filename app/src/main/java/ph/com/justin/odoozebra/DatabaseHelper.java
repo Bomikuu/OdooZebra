@@ -355,39 +355,4 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return productLotsModelList;
     }
-
-    /*public List<StudentModel> findStudents(Integer tempID) {
-        List<StudentModel> studentModelList  = new ArrayList<StudentModel>();
-        // Select All Query
-        String selectQuery;
-
-        if(tempID != null) {
-            selectQuery = "SELECT  * FROM " + tbl_student + " WHERE "
-                    + student_id + " LIKE '" + tempID + "%'";
-        }
-        else {
-            selectQuery = "SELECT  * FROM " + tbl_student;
-        }
-
-
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        // looping through all rows and adding to list
-        if (cursor.moveToFirst()) {
-            do {
-                StudentModel studentModel = new StudentModel();
-                studentModel.setId(cursor.getInt(0));
-                studentModel.setFirstName(cursor.getString(1));
-                studentModel.setLastName(cursor.getString(2));
-                studentModel.setAddress(cursor.getString(3));
-
-                studentModelList.add(studentModel);
-            } while (cursor.moveToNext());
-        }
-        // return quote list
-
-        db.close();
-        return studentModelList;
-    }*/
 }
