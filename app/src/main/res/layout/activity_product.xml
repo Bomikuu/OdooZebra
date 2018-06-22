@@ -64,6 +64,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
+
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
@@ -80,7 +81,7 @@
         <android.support.design.widget.TabLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/LightYellow"
+            android:background="@color/White"
             app:tabMode="fixed"
             app:tabGravity="fill"
             app:tabIndicatorColor="@color/colorPrimary"

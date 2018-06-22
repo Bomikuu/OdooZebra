@@ -53,9 +53,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/company_name"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:fontFamily="serif-monospace" />
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
             </TableRow>
 
 
@@ -66,9 +65,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/shipment"
-                    android:textSize="15sp"
-
-                    app:fontFamily="monospace" />
+                    android:textSize="12dp" />
             </TableRow>
 
             <TableRow>
@@ -77,9 +74,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/dateExpected"
-                    android:textSize="15sp"
-
-                    app:fontFamily="monospace" />
+                    android:textSize="12dp" />
             </TableRow>
 
 

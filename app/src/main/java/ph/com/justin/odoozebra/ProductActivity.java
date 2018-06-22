@@ -22,8 +22,8 @@ public class ProductActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.viewPager_id);
         adapter = new ViewPageAdapter(getSupportFragmentManager());
 
-        adapter.AddFragment(new FragmentPickingDetails(), "Details");
-        adapter.AddFragment(new FragmentProductList(), "Products");
+        adapter.AddFragment(new FragmentPickingDetails(), "");
+        adapter.AddFragment(new FragmentProductList(), "");
 
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
@@ -33,7 +33,7 @@ public class ProductActivity extends AppCompatActivity {
 
 
         setTitle(null);
-        Toolbar topToolBar = (Toolbar)findViewById(R.id.toolbar);
+        Toolbar topToolBar = findViewById(R.id.toolbar);
         setSupportActionBar(topToolBar);
         topToolBar.setLogo(R.drawable.ic_android_black_24dp);
         topToolBar.setLogoDescription(getResources().getString(R.string.logo_desc));

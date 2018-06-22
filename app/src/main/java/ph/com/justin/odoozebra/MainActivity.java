@@ -53,10 +53,10 @@ public class MainActivity extends AppCompatActivity {
         size = 0;
         //TabLayout
 
-        setTitle(null);
+        setTitle("Zebra");
         Toolbar topToolBar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(topToolBar);
-        topToolBar.setLogo(R.drawable.ic_android_black_24dp);
+        topToolBar.setLogo(null);
         topToolBar.setLogoDescription(getResources().getString(R.string.logo_desc));
 
         databaseHelper = new DatabaseHelper(MainActivity.this);
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
     public void loadPickingsView() {
         pickingAdapter = new PickingAdapter(MainActivity.this, pickingModelList);
 
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(MainActivity.this, 1);
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(MainActivity.this, 2);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(pickingAdapter);
@@ -261,15 +261,13 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_search) {
             return true;
         }
         if(id == R.id.action_refresh){
             resyncPickings();
         }
-        if(id == R.id.action_new){
-            Toast.makeText(MainActivity.this, "Create Text", Toast.LENGTH_LONG).show();
-        }
+
         return super.onOptionsItemSelected(item);
     }
 }
