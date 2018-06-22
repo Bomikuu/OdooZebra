@@ -13,6 +13,7 @@
         android:layout_alignParentTop="true"
         android:background="@color/White"
         android:minHeight="?attr/actionBarSize"
+        app:collapseIcon="@drawable/ic_arrow_back"
 
         android:elevation="3dp"></android.support.v7.widget.Toolbar>
 

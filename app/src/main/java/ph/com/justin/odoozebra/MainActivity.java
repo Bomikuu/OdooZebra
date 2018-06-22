@@ -211,7 +211,6 @@ public class MainActivity extends AppCompatActivity {
                             JSONObject productLotsObject = product_lots.getJSONObject(c);
 
                             ProductLotsModel productLotsModel = new ProductLotsModel();
-                            productLotsModel.setId(Integer.parseInt(productLotsObject.getString("id")));
                             productLotsModel.setName(productLotsObject.getString("lot_name"));
                             productLotsModel.setOperation(Integer.parseInt(productObject.getString("id")));
 
