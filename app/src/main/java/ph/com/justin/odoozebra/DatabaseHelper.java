@@ -13,7 +13,7 @@ import java.util.List;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     //database version
-    private static final int DATABASE_VERSION = 7;
+    private static final int DATABASE_VERSION = 8;
 
     ///database name
     private static final String DATABASE_NAME = "Pickings";
@@ -46,7 +46,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     ///table name
     private static final String tbl_product_lots = "tbl_product_lots";
     ///columns...
-    private static final String product_lots_id = "product_lots_id";
     private static final String product_lots_name = "product_lots_name";
     private static final String product_lots_operation_id = "product_lots_operation_id";
 
@@ -80,7 +79,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(CREATE_PRODUCTS_TABLE);
 
         String CREATE_PRODUCT_LOTS_TABLE = "CREATE TABLE " + tbl_product_lots + "("
-                + product_lots_id + " integer primary key  , "
                 + product_lots_name + " TEXT, "
                 + product_lots_operation_id + " integer);";
         sqLiteDatabase.execSQL(CREATE_PRODUCT_LOTS_TABLE);
@@ -135,7 +133,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put(product_lots_id, productLotsModel.getId());
         values.put(product_lots_name, productLotsModel.getName());
         values.put(product_lots_operation_id, productLotsModel.getOperation());
 
@@ -346,7 +343,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                ProductLotsModel productLotsModel = new ProductLotsModel();
+                ProductLotsModel productLotsModel = new ProductLotsModel(name, operation);
                 productLotsModel.setId(cursor.getInt(0));
                 productLotsModel.setName(cursor.getString(1));
                 productLotsModel.setOperation(cursor.getInt(2));

@@ -1,25 +1,15 @@
 package ph.com.justin.odoozebra;
 
 public class ProductLotsModel {
-    private Integer id;
     private String name;
     private Integer operation;
 
     public ProductLotsModel() {
     }
 
-    public ProductLotsModel(Integer id, String name, Integer operation) {
-        this.id = id;
+    public ProductLotsModel(String name, Integer operation) {
         this.name = name;
         this.operation = operation;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getName() {
