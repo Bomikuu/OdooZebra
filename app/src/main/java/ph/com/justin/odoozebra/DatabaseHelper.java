@@ -343,10 +343,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                ProductLotsModel productLotsModel = new ProductLotsModel(name, operation);
-                productLotsModel.setId(cursor.getInt(0));
-                productLotsModel.setName(cursor.getString(1));
-                productLotsModel.setOperation(cursor.getInt(2));
+                ProductLotsModel productLotsModel = new ProductLotsModel();
+                productLotsModel.setName(cursor.getString(0));
+                productLotsModel.setOperation(cursor.getInt(1));
 
                 productLotsModelList.add(productLotsModel);
             } while (cursor.moveToNext());
