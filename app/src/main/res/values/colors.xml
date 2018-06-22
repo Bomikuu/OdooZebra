@@ -30,4 +30,5 @@
     <color name="Moccasin">#FFE4B5</color>
     <color name="NavajoWhite">#FFDEAD</color>
     <color name="PeachPuff">#FFDAB9</color>
+   <color name="ViewBG">#f1f5f8</color>
 </resources>

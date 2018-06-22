@@ -9,17 +9,17 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="50dp"
         android:layout_alignParentTop="true"
-        android:background="@color/colorPrimary"
+        android:background="@color/White"
         android:minHeight="?attr/actionBarSize"
-        android:elevation="@dimen/cardview_compat_inset_shadow"></android.support.v7.widget.Toolbar>
 
-    <LinearLayout
+        android:elevation="3dp"></android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
         android:layout_below="@id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="35dp"
-        android:orientation="vertical"
         android:id="@+id/overall_picking_details"
         android:padding="5dp"
         android:background="@color/DarkWhite"
@@ -27,19 +27,26 @@
 
         <TextView
             android:id="@+id/txtCountPickings"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="# of Pickings"
-            android:textSize="20dp"/>
+            android:textSize="15dp"/>
 
-    </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="Sort by"
+            android:textSize="12dp" />
+
+    </RelativeLayout>
 
 
     <LinearLayout
         android:layout_below="@id/overall_picking_details"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/DarkWhite">
+        android:layout_height="match_parent"
+        android:background="@color/ViewBG">
 
         <android.support.v7.widget.RecyclerView
             android:layout_below="@id/overall_picking_details"
