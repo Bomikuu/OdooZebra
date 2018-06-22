@@ -35,7 +35,6 @@ public class FragmentProductList extends Fragment {
 
         databaseHelper = new DatabaseHelper(this.getContext());
         currentProductModelList = databaseHelper.getPickingProducts(ModGlobal.currentPickingID);
-
         loadProductsView();
         return v;
     }
@@ -58,6 +57,7 @@ public class FragmentProductList extends Fragment {
         productAdapter.setOnItemClickListener(new ProductAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
+                ModGlobal.currentProductID = currentProductModelList.get(position).getId();
                 goToProductLots();
             }
 
@@ -69,6 +69,7 @@ public class FragmentProductList extends Fragment {
 
     public void goToProductLots() {
         Intent intent = new Intent(this.getContext(), ProductLotsActivity.class);
+
         startActivity(intent);
     }
 }

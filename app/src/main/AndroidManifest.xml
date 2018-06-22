@@ -21,6 +21,7 @@
         </activity>
         <activity android:name=".ProductActivity" />
         <activity android:name=".ProductLotsActivity" />
+        <activity android:name=".ListLotsActivity"></activity>
     </application>
 
 </manifest>
