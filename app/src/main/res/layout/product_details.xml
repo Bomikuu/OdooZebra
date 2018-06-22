@@ -66,10 +66,15 @@
                 android:id="@+id/txtQuantityDone"
                 />
             <ProgressBar
-                style="?android:attr/progressBarStyleHorizontal"
+                style="@android:style/Widget.ProgressBar.Horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/progressQuantity"/>
+                android:layout_height="20dp"
+                android:maxHeight="20dp"
+                android:minHeight="20dp"
+                android:progress="25"
+                android:id="@+id/progressQuantity"
+
+                />
 
 
         </LinearLayout>

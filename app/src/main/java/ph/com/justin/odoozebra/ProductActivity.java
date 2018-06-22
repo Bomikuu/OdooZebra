@@ -17,6 +17,12 @@ public class ProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
 
+        setTitle(null);
+        Toolbar topToolBar = findViewById(R.id.toolbar);
+        setSupportActionBar(topToolBar);
+        topToolBar.setLogo(R.drawable.ic_android_black_24dp);
+        topToolBar.setLogoDescription(getResources().getString(R.string.logo_desc));
+
         //TabLayout
         tabLayout = findViewById(R.id.tablayout_id);
         viewPager = findViewById(R.id.viewPager_id);
@@ -32,11 +38,9 @@ public class ProductActivity extends AppCompatActivity {
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_tab_2);
 
 
-        setTitle(null);
-        Toolbar topToolBar = findViewById(R.id.toolbar);
-        setSupportActionBar(topToolBar);
-        topToolBar.setLogo(R.drawable.ic_android_black_24dp);
-        topToolBar.setLogoDescription(getResources().getString(R.string.logo_desc));
+
+
+
     }
 
 
