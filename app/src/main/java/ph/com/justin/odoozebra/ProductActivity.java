@@ -22,8 +22,8 @@ public class ProductActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.viewPager_id);
         adapter = new ViewPageAdapter(getSupportFragmentManager());
 
-        adapter.AddFragment(new FragmentPickingDetails(), "");
-        adapter.AddFragment(new FragmentProductList(), "");
+        adapter.AddFragment(new FragmentPickingDetails(), "Details");
+        adapter.AddFragment(new FragmentProductList(), "Products");
 
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);

@@ -58,7 +58,7 @@ public class FragmentProductList extends Fragment {
         productAdapter.setOnItemClickListener(new ProductAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-
+                goToProductLots();
             }
 
             @Override

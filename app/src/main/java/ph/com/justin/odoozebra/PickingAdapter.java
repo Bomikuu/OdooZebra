@@ -91,6 +91,13 @@ public class PickingAdapter extends RecyclerView.Adapter<PickingAdapter.MyViewHo
     public void onBindViewHolder(final PickingAdapter.MyViewHolder holder, int position) {
         holder.txtShipment.setText(pickingModels.get(position).getName());
         holder.txtCompany.setText(pickingModels.get(position).getPartner());
+
+        holder.overflow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPopupMenu(holder.overflow);
+            }
+        });
     }
 
     @Override

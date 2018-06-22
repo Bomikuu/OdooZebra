@@ -6,4 +6,48 @@
     android:layout_height="match_parent"
     tools:context=".ProductLotsActivity">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Bar Code goes here..."
+            android:id="@+id/txtBarText"
+            android:layout_alignParentTop="true"
+            android:visibility="invisible"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:id="@+id/imgBarCode"
+            android:background="@drawable/ic_launcher_background"
+            android:layout_below="@id/txtBarText"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Start Scanning"
+            android:id="@+id/btnScan"
+            android:layout_below="@id/imgBarCode"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sync List of Scans"
+            android:id="@+id/btnSync"
+            android:layout_below="@id/btnScan"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="List of Scans"
+            android:id="@+id/btnListOfScan"
+            android:layout_below="@+id/btnSync"/>
+    </RelativeLayout>
+
+
+
 </android.support.constraint.ConstraintLayout>

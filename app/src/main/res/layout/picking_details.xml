@@ -20,9 +20,8 @@
 
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight=".5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             >
 
@@ -77,11 +76,6 @@
                     android:textSize="12dp" />
             </TableRow>
 
-
-
-
-
-
         </TableLayout>
         </LinearLayout>
 
@@ -96,9 +90,10 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.5"
+        android:layout_height="wrap_content"
+
         android:orientation="vertical"
+        android:padding="5dp"
         >
 
         <TextView
@@ -106,38 +101,51 @@
             android:layout_height="wrap_content"
             android:text="Other Details"
             android:layout_alignParentTop="true"
-            android:id="@+id/txtOther"/>
+            android:id="@+id/txtOther"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:layout_marginBottom="5dp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Origin"
             android:layout_below="@+id/txtOther"
-            android:id="@+id/txtOrigin"/>
+            android:id="@+id/txtOrigin"
+            android:textSize="17dp"
+            android:layout_marginBottom="5dp"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Date Created"
             android:layout_below="@+id/txtOrigin"
-            android:id="@+id/txtDateCreated"/>
+            android:id="@+id/txtDateCreated"
+            android:textSize="17dp"
+            android:layout_marginBottom="5dp"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Location Source"
             android:layout_below="@+id/txtDateCreated"
-            android:id="@+id/txtLocationSource"/>
+            android:id="@+id/txtLocationSource"
+            android:textSize="17dp"
+            android:layout_marginBottom="5dp"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Location Destination"
             android:layout_below="@+id/txtLocationSource"
-            android:id="@+id/txtLocationDestination"/>
+            android:id="@+id/txtLocationDestination"
+            android:textSize="17dp"
+            android:layout_marginBottom="5dp"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Pick Type"
             android:layout_below="@+id/txtLocationDestination"
-            android:id="@+id/txtPickType"/>
+            android:id="@+id/txtPickType"
+            android:textSize="17dp"
+            android:layout_marginBottom="5dp"/>
 
 
 
@@ -150,23 +158,7 @@
         android:layout_height="1dp"
         android:background="@android:color/darker_gray"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        >
 
-
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:text="INFO HERE"
-            android:textSize="30dp"
-            />
-
-
-    </LinearLayout>
 
 
 
