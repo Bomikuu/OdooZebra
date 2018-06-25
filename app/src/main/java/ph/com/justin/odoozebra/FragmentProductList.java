@@ -22,7 +22,6 @@ import java.util.List;
 
 public class FragmentProductList extends Fragment {
     ProductAdapter productAdapter;
-    List<ProductModel> productModelList;
     RecyclerView recyclerView;
     DatabaseHelper databaseHelper;
     List<ProductModel> currentProductModelList;

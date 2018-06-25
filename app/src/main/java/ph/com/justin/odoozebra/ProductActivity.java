@@ -1,12 +1,10 @@
 package ph.com.justin.odoozebra;
 
-import android.content.Context;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.TextView;
 
 public class ProductActivity extends AppCompatActivity {
@@ -67,6 +65,4 @@ public class ProductActivity extends AppCompatActivity {
         topToolBar.setLogo(R.drawable.ic_android_black_24dp);
         topToolBar.setLogoDescription(getResources().getString(R.string.logo_desc));
     }
-
-
 }

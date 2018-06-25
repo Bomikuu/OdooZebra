@@ -25,6 +25,7 @@ import java.util.Map;
 /**
  * Created by irvin on 10/26/16.
  */
+
 public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
     private List<BarcodeModel> form;
     private BitmapEncoder bitmapEncoder;

@@ -3,19 +3,10 @@ package ph.com.justin.odoozebra;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,18 +37,14 @@ public class ListLotsActivity extends AppCompatActivity {
         adapter = new DataAdapter(ModGlobal.barcodeModels);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-        //RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(ListLotsActivity.this, 1);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
-        //recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
     }
 
     class SyncLots extends AsyncTask<String, String, String> {
-        WebRequest wr = new WebRequest();
         private Context context;
         ProgressDialog progressDialog;
-
 
         private SyncLots(Context c) {
             this.context = c;

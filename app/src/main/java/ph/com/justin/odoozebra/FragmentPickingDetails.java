@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +28,6 @@ public class FragmentPickingDetails extends Fragment {
         v = inflater.inflate(R.layout.picking_details, container, false);
 
         txtDateExpected = v.findViewById(R.id.txtDateExpected);
-        //txtOrigin = v.findViewById(R.id.txtOrigin);
         txtDateCreated = v.findViewById(R.id.txtDateCreated);
         txtDateTransfer = v.findViewById(R.id.txtDateTransfer);
         txtLocationSource = v.findViewById(R.id.txtLocationSource);
@@ -60,18 +58,5 @@ public class FragmentPickingDetails extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        /*txtShipmentName = v.findViewById(R.id.txtShipmentName);
-        txtCompany = v.findViewById(R.id.txtCompany);
-        txtDateExpected = v.findViewById(R.id.txtDateExpected);
-        txtOrigin = v.findViewById(R.id.txtOrigin);
-        txtDateCreated = v.findViewById(R.id.txtDateCreated);
-        txtLocationSource = v.findViewById(R.id.txtLocationSource);
-        txtLocationDestination = v.findViewById(R.id.txtLocationDestination);
-        txtPickType = v.findViewById(R.id.txtPickType);
-
-        txtCompany.setText(ModGlobal.currentPickingID.toString());*/
     }
-
-
 }

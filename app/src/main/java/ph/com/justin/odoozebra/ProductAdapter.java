@@ -91,8 +91,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
         holder.txtProgress.setText(productModels.get(position).getQty_done() + "/" + productModels.get(position).getProduct_qty() );
         int progressQty = productModels.get(position).getQty_done() / productModels.get(position).getProduct_qty();
         holder.progressQuantity.setProgress(progressQty);
-       /* holder.txtQuantityToDo.setText("Qty to do:" + productModels.get(position).getProduct_qty());
-        holder.txtQuantityDone.setText("Qty done:" + productModels.get(position).getQty_done());*/
     }
 
     @Override

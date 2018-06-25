@@ -1,8 +1,5 @@
 package ph.com.justin.odoozebra;
 
-/**
- * Created by irvin on 5/4/18.
- */
 public class BarcodeModel {
 
     private String value;

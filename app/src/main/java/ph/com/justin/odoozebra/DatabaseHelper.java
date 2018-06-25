@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -268,67 +267,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void editStudent(Integer id, String newFname, String newLname, String newAddress) {
-        /*SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-
-        String oldId = id.toString();
-        values.put(student_fname, newFname);
-        values.put(student_lname, newLname);
-        values.put(student_address, newAddress);
-
-        db.update(tbl_student, values, "student_id="+oldId,null);
-        db.close();*/
-    }
-
-
-    public void deleteStudent(Integer id) {
-        /*SQLiteDatabase db = this.getWritableDatabase();
-
-        String oldId = id.toString();
-
-        db.delete(tbl_student, "student_id="+oldId, null);
-        db.close();*/
-    }
-/*
-    public String findStudent(Integer id) {
-        List<StudentModel> studentModelList  = new ArrayList<StudentModel>();
-
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        String oldId = id.toString();
-
-        String selectQuery = "SELECT  * FROM " + tbl_student
-                + " WHERE " + student_id + " LIKE '" + oldId + "%'";
-
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        // looping through all rows and adding to list
-        if (cursor.moveToFirst()) {
-            do {
-                StudentModel studentModel = new StudentModel(id, firstName, lastName, address);
-                studentModel.setId(cursor.getInt(0));
-                studentModel.setName(cursor.getString(1));
-                studentModel.setAddress(cursor.getString(2));
-
-                studentModelList.add(studentModel);
-            } while (cursor.moveToNext());
-        }
-
-        String value = "";
-
-        for (StudentModel studentModel : studentModelList){
-
-            value += studentModel.getId() + " "
-                    + studentModel.getName() + " "
-                    + studentModel.getAddress() + "\n";
-
-        }
-
-        db.close();
-
-        return value;
-    }*/
-
     public List<PickingModel> getAllPickings() {
         List<PickingModel> pickingModelList  = new ArrayList<PickingModel>();
         // Select All Query
@@ -357,7 +295,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 pickingModelList.add(pickingModel);
             } while (cursor.moveToNext());
         }
-        // return quote list
 
         db.close();
         return pickingModelList;
@@ -385,7 +322,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 productModelList.add(productModel);
             } while (cursor.moveToNext());
         }
-        // return quote list
 
         db.close();
         return productModelList;
