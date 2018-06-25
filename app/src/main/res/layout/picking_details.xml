@@ -1,164 +1,197 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".FragmentPickingDetails"
     android:orientation="vertical"
+    android:scrollbars="vertical"
     android:weightSum="3"
-    android:scrollbars="vertical">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".8"
-        android:orientation="horizontal"
-        android:weightSum="2"
-        android:padding="5dp"
-       >
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
-
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@mipmap/ic_launcher"
-                android:id="@+id/imgCompany"/>
-
-        </LinearLayout>
+    tools:context=".FragmentPickingDetails"
+    android:layout_margin="5dp">
 
 
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1.2"
-            android:layout_marginTop="10dp"
-            >
-
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TableRow>
-
-                <TextView
-                    android:id="@+id/txtCompany"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/company_name"
-                    android:textSize="15dp"
-                    android:textStyle="bold" />
-            </TableRow>
-
-
-
-            <TableRow>
-                <TextView
-                    android:id="@+id/txtShipmentName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/shipment"
-                    android:textSize="12dp" />
-            </TableRow>
-
-            <TableRow>
-                <TextView
-                    android:id="@+id/txtDateExpected"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/dateExpected"
-                    android:textSize="12dp" />
-            </TableRow>
-
-        </TableLayout>
-        </LinearLayout>
-
-
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray"/>
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:orientation="vertical"
         android:padding="5dp"
+        android:layout_margin="5dp">
+
+
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+          android:layout_alignParentTop="true"
+            android:id="@+id/containerPickingType"
         >
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Other Details"
-            android:layout_alignParentTop="true"
-            android:id="@+id/txtOther"
-            android:textStyle="bold"
-            android:textSize="20dp"
-            android:layout_marginBottom="5dp"/>
 
-        <TextView
+            <TextView
+                android:id="@+id/txtPickType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="Pick Type"
+                android:textSize="17dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                android:layout_alignParentBottom="true"/>
+
+
+        </RelativeLayout>
+
+
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Origin"
-            android:layout_below="@+id/txtOther"
-            android:id="@+id/txtOrigin"
-            android:textSize="17dp"
-            android:layout_marginBottom="5dp"/>
-        <TextView
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:id="@+id/containerScheduledDate"
+            android:layout_below="@+id/containerPickingType"
+            >
+
+
+            <TextView
+                android:id="@+id/txtDateExpected"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="Scheduled Date"
+                android:textSize="17dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                android:layout_alignParentBottom="true"/>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Date Created"
-            android:layout_below="@+id/txtOrigin"
-            android:id="@+id/txtDateCreated"
-            android:textSize="17dp"
-            android:layout_marginBottom="5dp"/>
-        <TextView
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:id="@+id/containerDateCreated"
+            android:layout_below="@+id/containerScheduledDate"
+            >
+
+
+            <TextView
+                android:id="@+id/txtDateCreated"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="Date Created"
+                android:textSize="17dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                android:layout_alignParentBottom="true"/>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Location Source"
-            android:layout_below="@+id/txtDateCreated"
-            android:id="@+id/txtLocationSource"
-            android:textSize="17dp"
-            android:layout_marginBottom="5dp"/>
-        <TextView
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:id="@+id/containerDateTransfer"
+            android:layout_below="@+id/containerDateCreated"
+            >
+
+
+            <TextView
+                android:id="@+id/txtDateTransfer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="Date of Transfer"
+                android:textSize="17dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                android:layout_alignParentBottom="true"/>
+
+
+        </RelativeLayout>
+
+
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Location Destination"
-            android:layout_below="@+id/txtLocationSource"
-            android:id="@+id/txtLocationDestination"
-            android:textSize="17dp"
-            android:layout_marginBottom="5dp"/>
-        <TextView
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:id="@+id/containerSourceLocation"
+            android:layout_below="@+id/containerDateTransfer"
+            >
+
+
+            <TextView
+                android:id="@+id/txtLocationSource"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="Location Source"
+                android:textSize="17dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                android:layout_alignParentBottom="true"/>
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Pick Type"
-            android:layout_below="@+id/txtLocationDestination"
-            android:id="@+id/txtPickType"
-            android:textSize="17dp"
-            android:layout_marginBottom="5dp"/>
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:id="@+id/containerDestinationLocation"
+            android:layout_below="@+id/containerSourceLocation"
+            >
+
+
+            <TextView
+                android:id="@+id/txtLocationDestination"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="Location Destination"
+                android:textSize="17dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                android:layout_alignParentBottom="true"/>
+
+
+        </RelativeLayout>
+
 
 
 
 
 
     </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray"/>
-
-
 
 
 

@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -27,15 +28,16 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView txtProductName, txtQuantityOrdered, txtQuantityToDo, txtQuantityDone;
+        TextView txtProductName, txtQuantityOrdered, txtQuantityToDo, txtQuantityDone, txtProgress;
+        ProgressBar progressQuantity;
 
         public MyViewHolder(View view, final OnItemClickListener listener) {
             super(view);
 
             txtProductName = view.findViewById(R.id.txtProductName);
             txtQuantityOrdered = view.findViewById(R.id.txtQuantityOrdered);
-            txtQuantityToDo = view.findViewById(R.id.txtQuantityToDo);
-            txtQuantityDone = view.findViewById(R.id.txtQuantityDone);
+            txtProgress = view.findViewById(R.id.txtProgress);
+            progressQuantity = view.findViewById(R.id.progressQuantity);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -84,10 +86,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(final ProductAdapter.MyViewHolder holder, int position) {
-        holder.txtProductName.setText("Product Name:" + productModels.get(position).getName());
-        holder.txtQuantityOrdered.setText("Qty Ordered:" + productModels.get(position).getQty_ordered());
-        holder.txtQuantityToDo.setText("Qty to do:" + productModels.get(position).getProduct_qty());
-        holder.txtQuantityDone.setText("Qty done:" + productModels.get(position).getQty_done());
+        holder.txtProductName.setText(productModels.get(position).getName());
+        holder.txtQuantityOrdered.setText("Quantity Ordered:" + productModels.get(position).getQty_ordered());
+        holder.txtProgress.setText(productModels.get(position).getQty_done() + "/" + productModels.get(position).getProduct_qty() );
+        int progressQty = productModels.get(position).getQty_done() / productModels.get(position).getProduct_qty();
+        holder.progressQuantity.setProgress(progressQty);
+       /* holder.txtQuantityToDo.setText("Qty to do:" + productModels.get(position).getProduct_qty());
+        holder.txtQuantityDone.setText("Qty done:" + productModels.get(position).getQty_done());*/
     }
 
     @Override

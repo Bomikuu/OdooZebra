@@ -14,7 +14,10 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -22,7 +25,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+
+import static java.util.Collections.sort;
 
 public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
@@ -34,8 +40,9 @@ public class MainActivity extends AppCompatActivity {
     List<ProductLotsModel> productLotsModelList;
     PickingAdapter pickingAdapter;
     String connectivity = "Not Connected";
-    TextView txtCountPickings;
+    TextView txtCountPickings, btnSort;
     Boolean resync = false;
+    Boolean ascending = true;
 
     //TabLayout
     private TabLayout tabLayout;
@@ -68,6 +75,15 @@ public class MainActivity extends AppCompatActivity {
         loadPickingsView();
 
         pickingModelList.addAll(databaseHelper.getAllPickings());
+
+        btnSort = findViewById(R.id.btnSort);
+        btnSort.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPopupMenu(btnSort);
+            }
+        });
+
     }
 
     @Override
@@ -96,10 +112,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(int position) {
                 ModGlobal.currentPickingID = pickingModelList.get(position).getId();
-
                 goToProducts();
             }
-
             @Override
             public void onLongItemClick(int position) {
             }
@@ -268,7 +282,56 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    private void sortPickings(Boolean value){
+
+        if(value){
+            loadPickingsView();
+        }
+        else{
+            Collections.reverse(pickingModelList);
+            loadPickingsView();
+        }
+
+
+    }
+
+    private void showPopupMenu(View view) {
+        // inflate menu
+        PopupMenu popup = new PopupMenu(this, view);
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.menu_sort, popup.getMenu());
+        popup.setOnMenuItemClickListener(new MyMenuItemClickListener());
+        popup.show();
+    }
+
+    /**
+     * Click listener for popup menu items
+     */
+    class MyMenuItemClickListener implements PopupMenu.OnMenuItemClickListener {
+
+        public MyMenuItemClickListener() {
+        }
+
+        @Override
+        public boolean onMenuItemClick(MenuItem menuItem) {
+            switch (menuItem.getItemId()) {
+                case R.id.action_ascending:
+                    ascending = true;
+                    sortPickings(ascending);
+                    return true;
+                case R.id.action_descending:
+                    ascending = false;
+                    sortPickings(ascending);
+                    return true;
+                default:
+            }
+            return false;
+        }
+    }
 }
+
+
 
 //https://api.myjson.com/bins/1121xe c=25
 //https://api.myjson.com/bins/sluje c=62
