@@ -13,7 +13,7 @@ import java.util.List;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     //database version
-    private static final int DATABASE_VERSION = 8;
+    private static final int DATABASE_VERSION = 10;
 
     ///database name
     private static final String DATABASE_NAME = "Pickings";
@@ -48,6 +48,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     ///columns...
     private static final String product_lots_name = "product_lots_name";
     private static final String product_lots_operation_id = "product_lots_operation_id";
+    private static final String product_lots_picking_id = "product_lots_picking_id";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -80,7 +81,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         String CREATE_PRODUCT_LOTS_TABLE = "CREATE TABLE " + tbl_product_lots + "("
                 + product_lots_name + " TEXT, "
-                + product_lots_operation_id + " integer);";
+                + product_lots_operation_id + " integer,"
+                + product_lots_picking_id + " integer);";
         sqLiteDatabase.execSQL(CREATE_PRODUCT_LOTS_TABLE);
     }
 
@@ -135,7 +137,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         values.put(product_lots_name, productLotsModel.getName());
         values.put(product_lots_operation_id, productLotsModel.getOperation());
-
+        values.put(product_lots_picking_id, productLotsModel.getPicking());
         // Inserting Row
         db.insert(tbl_product_lots, null, values);
         db.close(); // Closing database connection
@@ -143,7 +145,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public PickingModel getPicking(Integer id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Log.e("Char: ", ModGlobal.currentPickingID.toString());
 
         PickingModel tempPickingModel = new PickingModel();
 
@@ -197,6 +198,64 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return tempProductModelList;
     }
+
+    public Boolean existingProductLot(String name, String operationId, String pickingId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Boolean existing = false;
+
+        String query = "SELECT " + product_lots_name + " FROM " + tbl_product_lots + " WHERE " +
+                product_lots_name + "='" + name + "' AND " +
+                product_lots_operation_id + "=" + operationId + " AND " +
+                product_lots_picking_id + "=" + pickingId;
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        if ((cursor.moveToFirst()) || cursor.getCount() != 0) {
+            cursor.moveToFirst();
+            existing = true;
+        }
+
+        return existing;
+    }
+
+    public void saveProductLot(ProductLotsModel tempProductLotsModel) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(product_lots_name, tempProductLotsModel.getName());
+        values.put(product_lots_operation_id, tempProductLotsModel.getOperation());
+        values.put(product_lots_picking_id, tempProductLotsModel.getPicking());
+
+        // Inserting Row
+        db.insert(tbl_product_lots, null, values);
+        db.close(); // Closing database connection
+    }
+
+    public List<BarcodeModel> lotsAsBarcode (String operationId, String pickingId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        List<BarcodeModel> barcodeModelList = new ArrayList<BarcodeModel>();
+
+        String query = "SELECT * FROM " + tbl_product_lots + " WHERE " +
+                product_lots_operation_id + "=" + operationId + " AND " +
+                product_lots_picking_id + "=" + pickingId;
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                BarcodeModel barcodeModel = new BarcodeModel();
+                barcodeModel.setValue(cursor.getString(0));
+                barcodeModel.setProduct_id(cursor.getString(1));
+
+                barcodeModelList.add(barcodeModel);
+            } while (cursor.moveToNext());
+        }
+
+        return barcodeModelList;
+    }
+
     public void wipeDatabase() {
         SQLiteDatabase db = this.getWritableDatabase();
         String DELETE_PICKINGS = "DELETE FROM " + tbl_pickings;
@@ -346,6 +405,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 ProductLotsModel productLotsModel = new ProductLotsModel();
                 productLotsModel.setName(cursor.getString(0));
                 productLotsModel.setOperation(cursor.getInt(1));
+                productLotsModel.setPicking(cursor.getInt(2));
 
                 productLotsModelList.add(productLotsModel);
             } while (cursor.moveToNext());

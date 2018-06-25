@@ -18,14 +18,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 
 import org.w3c.dom.Text;
 
+import java.util.List;
+
 public class ProductLotsActivity extends AppCompatActivity {
 
+    DatabaseHelper databaseHelper;
     BitmapEncoder bitmapEncoder;
     Bitmap bitmap;
     Button btnScan;
@@ -46,6 +50,8 @@ public class ProductLotsActivity extends AppCompatActivity {
         txtBarcode = findViewById(R.id.txtBarcode);
         txtBarText = findViewById(R.id.txtBarText);
         imgBarCode = findViewById(R.id.imgBarCode);
+
+        databaseHelper = new DatabaseHelper(ProductLotsActivity.this);
 
         txtBarText.setEnabled(false);
         txtBarText.setText("");
@@ -87,9 +93,21 @@ public class ProductLotsActivity extends AppCompatActivity {
 
                         public void onFinish() {
                             try{
-                                ModGlobal.barcodeModels.add(new BarcodeModel(txtBarText.getText().toString(),
-                                        ModGlobal.currentProductID.toString()));
-                                loadPreview(txtBarText.getText().toString());
+                                String currBarcode = txtBarText.getText().toString();
+                                String currProdId = ModGlobal.currentProductID.toString();
+                                String currPickId = ModGlobal.currentPickingID.toString();
+                                Boolean existing = databaseHelper.existingProductLot(currBarcode, currProdId, currPickId);
+
+                                ProductLotsModel tempProductLotsModel = new ProductLotsModel(currBarcode, Integer.parseInt(currProdId), Integer.parseInt(currPickId));
+
+                                if (existing == false) {
+                                    databaseHelper.saveProductLot(tempProductLotsModel);
+                                    loadPreview(txtBarText.getText().toString());
+                                }
+                                else {
+                                    Toast.makeText(ProductLotsActivity.this, "Serial number already exists", Toast.LENGTH_SHORT).show();
+                                }
+
                                 txtBarText.setText("");
                                 indicator = true;
                             }catch (Exception e){
@@ -108,7 +126,6 @@ public class ProductLotsActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
             }
         });
-
     }
 
     public void loadPreview(String currString) throws WriterException {
@@ -118,6 +135,7 @@ public class ProductLotsActivity extends AppCompatActivity {
     }
 
     public void goToListOfLots() {
+        ModGlobal.barcodeModels = databaseHelper.lotsAsBarcode(ModGlobal.currentProductID.toString(), ModGlobal.currentPickingID.toString());
         Intent goToListOfLots = new Intent(ProductLotsActivity.this, ListLotsActivity.class);
         startActivity(goToListOfLots);
     }

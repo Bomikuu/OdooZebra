@@ -16,7 +16,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -213,7 +212,7 @@ public class MainActivity extends AppCompatActivity {
                             ProductLotsModel productLotsModel = new ProductLotsModel();
                             productLotsModel.setName(productLotsObject.getString("lot_name"));
                             productLotsModel.setOperation(Integer.parseInt(productObject.getString("id")));
-
+                            productLotsModel.setPicking(Integer.parseInt(pickingObject.getString("id")));
                             databaseHelper.createProductLots(productLotsModel);
                             productLotsModelList.add(productLotsModel);
                         }

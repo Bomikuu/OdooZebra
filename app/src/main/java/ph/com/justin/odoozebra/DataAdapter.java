@@ -46,7 +46,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
 
         Bitmap bitmap = null;
         try {
-            bitmap = bitmapEncoder.encodeAsBitmap(form.get(i).getValue(), BarcodeFormat.CODE_128, 600, 300);
+            bitmap = bitmapEncoder.encodeAsBitmap(form.get(i).getValue(), BarcodeFormat.CODE_128, 300,150);
 
         } catch (WriterException e) {
             e.printStackTrace();
@@ -77,9 +77,5 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
         this.form = new ArrayList<>();
         this.form = barcodes;
         notifyDataSetChanged();
-
-        for (int i = 0; i < ModGlobal.barcodeModels.size(); i++) {
-            Log.e("Test:", ModGlobal.barcodeModels.get(i).getValue());
-        }
     }
 }
