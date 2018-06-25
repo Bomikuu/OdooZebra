@@ -10,66 +10,8 @@
     tools:context=".FragmentPickingDetails"
     android:layout_margin="5dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2">
 
 
-        <ImageView
-            android:id="@+id/imgCompany"
-            android:layout_width="100dp"
-            android:layout_height="120dp"
-            android:src="@mipmap/ic_launcher"
-            android:layout_margin="5dp"/>
-
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:layout_marginTop="15dp"
-            >
-
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TableRow>
-
-                    <TextView
-                        android:id="@+id/txtCompany"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/company_name"
-                        android:textSize="20dp"
-                        android:textStyle="bold" />
-                </TableRow>
-
-
-                <TableRow>
-
-                    <TextView
-                        android:id="@+id/txtShipmentName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/shipment"
-                        android:textSize="17dp" />
-                </TableRow>
-
-
-
-            </TableLayout>
-        </LinearLayout>
-
-
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray" />
 
 
     <RelativeLayout
@@ -79,28 +21,15 @@
         android:padding="5dp"
         android:layout_margin="5dp">
 
-        <TextView
-            android:id="@+id/txtOther"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginBottom="5dp"
-            android:text="Other Details"
-            android:textSize="20dp"
-            android:textStyle="bold" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray"
-            android:layout_below="@id/txtOther"></View>
+
 
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:orientation="horizontal"
-            android:layout_below="@+id/txtOther"
+          android:layout_alignParentTop="true"
             android:id="@+id/containerPickingType"
         >
 

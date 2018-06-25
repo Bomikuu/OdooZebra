@@ -28,8 +28,6 @@ public class FragmentPickingDetails extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.picking_details, container, false);
 
-        txtShipmentName = v.findViewById(R.id.txtShipmentName);
-        txtCompany = v.findViewById(R.id.txtCompany);
         txtDateExpected = v.findViewById(R.id.txtDateExpected);
         //txtOrigin = v.findViewById(R.id.txtOrigin);
         txtDateCreated = v.findViewById(R.id.txtDateCreated);
@@ -48,10 +46,6 @@ public class FragmentPickingDetails extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        txtCompany.setText(currentPickingModel.getPartner());
-        txtShipmentName.setText(currentPickingModel.getName());
-
         txtDateExpected.setText("Min date:\n" + currentPickingModel.getMin_date() +
                 "\nMax date:\n" + currentPickingModel.getMax_date());
         //txtOrigin.setText("Origin:" + currentPickingModel.getOrigin());

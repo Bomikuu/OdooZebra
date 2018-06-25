@@ -21,10 +21,66 @@
         android:elevation="3dp"></android.support.v7.widget.Toolbar>
 
 
+    <LinearLayout
+        android:layout_below="@id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:id="@+id/pickingContainer">
 
+
+        <ImageView
+            android:id="@+id/imgCompany"
+            android:layout_width="100dp"
+            android:layout_height="120dp"
+            android:src="@mipmap/ic_launcher"
+            android:layout_margin="5dp"/>
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:layout_marginTop="15dp"
+            >
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/txtCompany"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/company_name"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+                </TableRow>
+
+
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/txtShipmentName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/shipment"
+                        android:textSize="17dp" />
+                </TableRow>
+
+
+
+            </TableLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
 
     <RelativeLayout
-        android:layout_below="@id/toolbar"
+        android:layout_below="@id/pickingContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/ViewBG">

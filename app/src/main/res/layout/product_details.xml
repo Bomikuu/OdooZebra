@@ -3,11 +3,11 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
     app:cardBackgroundColor="@color/White"
     app:cardUseCompatPadding="true"
-    app:contentPadding="3dp"
-    android:numColumns="2"
+    app:contentPadding="0dp"
     >
 
     <LinearLayout
@@ -36,13 +36,16 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1.5"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="5dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Product Name"
                 android:id="@+id/txtProductName"
+                android:textStyle="bold"
+                android:textSize="17dp"
                 />
 
             <TextView
@@ -50,31 +53,48 @@
                 android:layout_height="wrap_content"
                 android:text="Quantity Ordered"
                 android:id="@+id/txtQuantityOrdered"
+                android:textSize="15dp"
                 />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="To Do"
-                android:id="@+id/txtQuantityToDo"
-                />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Progress:"
+            android:textStyle="bold"
+            android:textSize="15dp">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Done"
-                android:id="@+id/txtQuantityDone"
-                />
-            <ProgressBar
-                style="@android:style/Widget.ProgressBar.Horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:maxHeight="20dp"
-                android:minHeight="20dp"
-                android:progress="25"
-                android:id="@+id/progressQuantity"
+            </TextView>
 
-                />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ProgressBar
+                    style="@android:style/Widget.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:maxHeight="30dp"
+                    android:minHeight="20dp"
+                    android:progress="25"
+                    android:id="@+id/progressQuantity"
+                    android:layout_marginBottom="5dp"
+
+                    />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Progress"
+                    android:layout_centerInParent="true"
+                    android:id="@+id/txtProgress"
+                    android:textStyle="bold"
+                    >
+
+                </TextView>
+
+            </RelativeLayout>
+
 
 
         </LinearLayout>
